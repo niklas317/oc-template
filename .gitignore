@@ -1,0 +1,29 @@
+# Credentials and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.secret
+credentials.json
+
+# Local caches and dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.dist/
+dist/
+build/
+.coverage
+coverage/
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
