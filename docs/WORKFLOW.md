@@ -1,46 +1,51 @@
-# Engineering Workflow
+# Development Workflow
 
-This file describes the agreed development process. Dedicated skills, commands, and agents will implement parts of it later; they are **not assumed to exist yet**.
+This document describes how to use the OpenCode development environment in new or existing repositories.
 
-## Requirements & Planning
+General agent behavior is defined in `AGENTS.md`. Environment restrictions are defined in `docs/ENVIRONMENT.md`. Detailed procedures belong to their respective commands and skills.
 
-- Use structured, testable requirements for substantial features; keep trivial changes lightweight. Sphinx-Needs is optional for projects needing formal traceability.
-- Agree on architecture, acceptance criteria, verification strategy, and small milestones before substantial implementation.
-- Declare both **structural scope** (files, directories, dependencies) and **behavioral scope** (functions, interfaces, effects). Permission to edit a file is not permission to redesign it.
+## 1. Project Onboarding
 
-## Implementation & Verification
+Run `/project-setup` when introducing OpenCode to a repository.
 
-- The implementation agent works autonomously within the approved milestone and scope, including evidence-based debugging and repeated testing.
-- Preserve unrelated behavior. Ask before scope expansion, requirement changes, or significant architectural deviations.
-- Select suitable software tests, static checks, and simulations; report exactly what passed, failed, or could not run.
-- A separate **read-only review subagent** should inspect changes against requirements and engineering standards (implementation pending).
-- Fix blocking review findings within approved scope and reverify; present optional improvements for operator decision.
+- Analyze the existing codebase, architecture, tooling, and documentation.
+- Conduct an iterative technical interview to establish project context.
+- Document confirmed findings in `docs/PROJECT.md`.
+- Propose configuration changes and apply them only after approval.
 
-## Milestone Acceptance & Git
+Preserve existing project conventions. Onboarding does not include application implementation or requirements engineering.
 
-- After each milestone, summarize changed files, behavior, tests, review findings, and remaining limitations. Detail should reflect the change's impact.
-- The agent can mark work **ready for approval**, but only the operator can **accept** it. Wait for acceptance before starting the next milestone.
-- Acceptance authorizes one focused local commit containing approved changes only.
-- Pushing, merging, shared-history rebasing, and destructive Git operations require separate approval.
+## 2. Development Cycle
 
-## External Verification
+Development follows a milestone-based workflow:
 
-Use when a test requires another machine, unavailable compute, or human-operated hardware.
+1. **Plan:** Establish the objective, acceptance criteria, architecture, and structural and behavioral change scope.
+2. **Approve:** The operator agrees on the milestone and its boundaries.
+3. **Implement:** The agent works autonomously within the approved scope, including debugging and appropriate testing.
+4. **Review:** Independent subagents evaluate correctness, standards, and specification compliance through `code-review`.
+5. **Verify:** Resolve blocking findings, repeat relevant checks, and document remaining limitations.
+6. **Accept:** Present the result to the operator. Only explicit acceptance completes the milestone and authorizes its local commit.
 
-1. Prepare a test branch `test/YYYY-MM-DD-case-name` (add a suffix if needed). Intermediate commits on this branch do **not** signify milestone acceptance.
-2. Create `RESULTS.md` on that branch with test/requirement IDs where available, objective, prerequisites, exact procedure, expected outcomes, and blank fields for actual results, logs, observations, and outcome.
-3. Request approval before pushing the test branch. One explicit approval is enough for that push; no standing push permission is implied.
-4. The operator pulls the branch, runs the external tests, fills in `RESULTS.md`, commits the evidence, and pushes it back.
-5. The agent retrieves the findings and continues only within the previously approved implementation scope. Failed, missing, or inconclusive tests remain visible.
+Requirements may range from simple acceptance criteria to formal specifications. The appropriate level of detail depends on the project.
 
-### Real-World Verification
+## 3. External Verification
 
-- Identify physical validation needs during requirements engineering. Passing simulation is **not** equivalent to physical validation.
-- If hardware verification is required, produce a **Real-World Verification Request** with test objective, safety/prerequisites, steps, expected results, and required evidence.
-- Only the operator executes physical tests. The agent analyzes reported results, but never controls the hardware.
+When local verification is insufficient, use the `external-test` skill.
 
-## Session Handoff
+- Prepare a reproducible test procedure and identify required evidence.
+- For cross-machine testing, obtain one approval covering creation, commit, and push of a dedicated `test/YYYY-MM-DD-case-name` branch.
+- Record procedures and expected results in `RESULTS.md`.
+- The operator executes external tests, records observations, and returns the results.
+- Evaluate the findings before continuing development.
 
-- Do not maintain a continuous development journal.
-- On explicit `/handoff` invocation (to be implemented), create or update `docs/HANDOFF.md` with current objective, decisions, state, changed files, verification, blockers, and next steps. Exclude secrets.
-- When resuming, compare the handoff against the repository and Git state instead of blindly trusting it.
+Physical hardware deployment and testing are exclusively operator-controlled. Intermediate test commits do not constitute milestone acceptance.
+
+## 4. Session Continuity
+
+Development normally continues within the current session until the milestone is resolved.
+
+When context must be preserved across sessions or machines, invoke `/handoff` to create `docs/HANDOFF.md`.
+
+On resumption, verify the handoff against the current repository and Git state before continuing.
+
+No continuous development journal is required.

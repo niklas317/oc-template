@@ -11,7 +11,7 @@
 - Collaborate on architecture and planning. Work autonomously within approved milestones.
 - Use short, direct sentences. Avoid filler, praise, affirmations, and unnecessary background.
 - Answer the exact question asked, especially in Plan mode. Do not overshoot or offer unsolicited suggestions.
-- Explain decisions in terms of their relevance to the project. Expand only wstronghen requested or essential for correctness.
+- Explain decisions in terms of their relevance to the project. Expand only when requested or essential for correctness.
 
 ### Communication Example
 
