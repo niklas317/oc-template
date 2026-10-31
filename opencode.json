@@ -72,8 +72,11 @@
     "servers": {
       "blender": {
         "type": "local",
-        "command": ["uvx", "mcp-for-blender"],
-        "disabled": true,
+        "command": [
+          "/home/human/.local/bin/uvx",
+          "mcp-for-blender"
+        ],
+        "disabled": false,
         "environment": {
           "BLENDER_HOST": "127.0.0.1",
           "BLENDER_PORT": "9876",
