@@ -18,7 +18,7 @@
 **Context:** The agent replaced a nested loop with binary search to improve performance. The operator asks: "Why does this matter?"
 
 **GOOD:**
-> It helps with our timing constraint. The slower search could block the entire ROS 2 node.
+> It helps meet the timing constraint. The slower operation could miss the required deadline.
 
 **BAD:**
 > Good question! In general, these optimizations are done to reduce complexity, since it is fewer lines of code. But this is not your main concern; instead, focus on the timing. The nested for loop runs through each inner loop fully before iterating the outer. Using a different search, it will go faster because we impose constraints on how we search. But remember, it also matters whether your data is sorted, so this approach doesn't always work. Do you want me to list three even faster searches?
@@ -41,23 +41,19 @@
 - Delegate independent code review to a separate read-only reviewer agent. Fix blocking findings autonomously within approved scope; report optional improvements.
 - Report actual changes, test results, review findings, and outstanding limitations after each milestone. Never claim unperformed verification succeeded.
 - Only the operator may accept a milestone. Await approval before proceeding.
-
-## Git & Version Control
-
-- Inspect Git state freely and create local feature branches when appropriate.
-- Never discard, overwrite, or commit unrelated changes.
-- After milestone acceptance, commit only approved changes with a descriptive message.
-- Require separate approval for pushing, merging, rebasing shared history, or destructive Git operations.
+- For ROS 2 Jazzy engineering tasks, load the `ros2-engineering` skill.
 
 ## Environment & Dependencies
 
 - Treat environments as shared unless verified and documented as isolated and disposable.
+- Use paths that are explicitly available to the current tool and environment. Do not assume a host path is accessible from a VM/container or that    similarly named paths refer to the same files; verify mount mappings before relying on them.
+- When duplicate, generated, or local copies of an artifact may diverge, identify and verify the authoritative source before editing or replacing a copy.
 - Prefer reproducible, project-local dependencies. Manage them autonomously within approved scope.
 - Require approval for system-wide changes in shared environments. Allow broader autonomy in verified disposable environments within agreed boundaries.
-- Document persistent dependencies and environment requirements in version-controlled files.
+- Document persistent dependencies and environment requirements in project files.
 
 ## Session Continuity
 
-- Preserve lasting decisions in project documentation. Do not maintain a continuous development journal.
+- Preserve lasting decisions in project documentation under `docs/PROJECT.md`. Do not maintain a continuous development journal.
 - Create a concise `docs/HANDOFF.md` only when explicitly requested, covering current state, decisions, unfinished work, and next steps.
 - On resumption, verify handoff information against the actual repository state.

@@ -7,7 +7,7 @@ Run `opencode`, then `/project-setup`; apply approved changes with `/project-set
 
 ## Included
 - **Commands:** `project-setup`, `handoff`, `code-review`.
-- **Skills:** `handoff`, `code-review`, `systematic-debugging`, `external-test`.
+- **Skills:** `handoff`, `code-review`, `systematic-debugging`, `external-test`, `grilling`, `ros2-engineering`.
 - **Agent:** Independent code reviewer.
 - **Docs:** Project context, workflow, and environment policies.
 

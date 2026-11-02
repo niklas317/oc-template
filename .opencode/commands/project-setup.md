@@ -20,6 +20,11 @@ Do not initialize the original `oc-template` repository.
 4. Propose minimal onboarding changes, specifying affected files and their intended purpose.
 5. Await approval. Do not modify files.
 
+If the project uses ROS 2 Jazzy, load the `ros2-engineering` skill.
+For new robot projects, identify the required robot subsystems and propose a cohesive package architecture.
+For existing ROS 2 workspaces, preserve reasonable package boundaries.
+Document the proposed architecture during onboarding; do not create packages or nodes.
+
 ## Apply
 
 Only run with `apply` after explicit approval of a specific plan in this session.

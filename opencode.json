@@ -35,9 +35,6 @@
     { "action": "edit", "resource": "*.npmrc", "effect": "deny" },
     { "action": "edit", "resource": "*.pypirc", "effect": "deny" },
 
-    { "action": "edit", "resource": ".git/*", "effect": "deny" },
-    { "action": "edit", "resource": "*/.git/*", "effect": "deny" },
-
     { "action": "edit", "resource": "AGENTS.md", "effect": "ask" },
     { "action": "edit", "resource": "*/AGENTS.md", "effect": "ask" },
     { "action": "edit", "resource": "opencode.json", "effect": "ask" },
@@ -51,22 +48,52 @@
     { "action": "shell", "resource": "*", "effect": "ask" },
 
     { "action": "shell", "resource": "pwd", "effect": "allow" },
-    { "action": "shell", "resource": "git status *", "effect": "allow" },
-    { "action": "shell", "resource": "git diff *", "effect": "allow" },
-    { "action": "shell", "resource": "git log *", "effect": "allow" },
-    { "action": "shell", "resource": "git branch --show-current *", "effect": "allow" },
-    { "action": "shell", "resource": "git rev-parse --show-toplevel *", "effect": "allow" },
-
-    { "action": "shell", "resource": "git commit *", "effect": "ask" },
-    { "action": "shell", "resource": "git push *", "effect": "ask" },
-    { "action": "shell", "resource": "git pull *", "effect": "ask" },
-    { "action": "shell", "resource": "git merge *", "effect": "ask" },
-    { "action": "shell", "resource": "git rebase *", "effect": "ask" },
-    { "action": "shell", "resource": "git reset *", "effect": "ask" },
-    { "action": "shell", "resource": "git clean *", "effect": "ask" },
-
     { "action": "shell", "resource": "sudo *", "effect": "deny" },
-    { "action": "external_directory", "resource": "*", "effect": "ask" }
+    { "action": "external_directory", "resource": "*", "effect": "ask" },
+
+    { "action": "shell", "resource": "ls *", "effect": "allow" },
+    { "action": "shell", "resource": "cat *", "effect": "allow" },
+    { "action": "shell", "resource": "head *", "effect": "allow" },
+    { "action": "shell", "resource": "tail *", "effect": "allow" },
+    { "action": "shell", "resource": "wc *", "effect": "allow" },
+    { "action": "shell", "resource": "stat *", "effect": "allow" },
+    { "action": "shell", "resource": "file *", "effect": "allow" },
+    { "action": "shell", "resource": "grep *", "effect": "allow" },
+    { "action": "shell", "resource": "rg *", "effect": "allow" },
+    { "action": "shell", "resource": "cmp *", "effect": "allow" },
+    { "action": "shell", "resource": "command -v *", "effect": "allow" },
+    { "action": "shell", "resource": "test *", "effect": "allow" },
+    { "action": "shell", "resource": "true", "effect": "allow" },
+    { "action": "shell", "resource": "python3 *", "effect": "allow" },
+    { "action": "shell", "resource": "PYTHONPATH=* python3 *", "effect": "allow" },
+
+    { "action": "shell", "resource": "source /opt/ros/jazzy/setup.bash", "effect": "allow" },
+    { "action": "shell", "resource": "source install/setup.bash", "effect": "allow" },
+    { "action": "shell", "resource": "colcon build *", "effect": "allow" },
+    { "action": "shell", "resource": "colcon test *", "effect": "allow" },
+    { "action": "shell", "resource": "colcon test-result *", "effect": "allow" },
+    { "action": "shell", "resource": "xacro *", "effect": "allow" },
+    { "action": "shell", "resource": "cp scorpion_description/urdf/scorpion_robot.urdf.xacro /mnt/shared/scorPIon-model-creation/ros2_ws/src/scorpion_description/urdf/scorpion_robot.urdf.xacro", "effect": "allow" },
+    { "action": "shell", "resource": "cp scorpion_description/tests/validate_xacro.py /mnt/shared/scorPIon-model-creation/ros2_ws/src/scorpion_description/tests/validate_xacro.py", "effect": "allow" },
+
+    { "action": "shell", "resource": "rm *", "effect": "ask" },
+    { "action": "shell", "resource": "rmdir *", "effect": "ask" },
+    { "action": "shell", "resource": "unlink *", "effect": "ask" },
+    { "action": "shell", "resource": "shred *", "effect": "ask" },
+    { "action": "shell", "resource": "find * -delete", "effect": "ask" },
+    { "action": "shell", "resource": "mv *", "effect": "ask" },
+
+    { "action": "external_directory", "resource": "/mnt/shared/scorPIon-model-creation/*", "effect": "allow" },
+
+    { "action": "execute", "resource": "*", "effect": "allow" },
+    { "action": "blender_disable_telemetry", "resource": "*", "effect": "allow" },
+    { "action": "blender_execute_blender_code", "resource": "*", "effect": "allow" },
+    { "action": "blender_generate_3d", "resource": "*", "effect": "allow" },
+    { "action": "blender_get_addon_status", "resource": "*", "effect": "allow" },
+    { "action": "blender_get_scene_info", "resource": "*", "effect": "allow" },
+    { "action": "blender_import_asset", "resource": "*", "effect": "allow" },
+    { "action": "blender_record_trajectory_feedback", "resource": "*", "effect": "allow" },
+    { "action": "blender_search_assets", "resource": "*", "effect": "allow" }
   ],
   "mcp": {
     "servers": {
